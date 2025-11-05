@@ -1,0 +1,240 @@
+/* ===== โครงหลัก ===== */
+.profile-container {
+  background-color: #ffe6f2; /* ชมพูอ่อนทั่วหน้า */
+  min-height: 100vh;
+  padding: 30px 60px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  position: relative;
+}
+
+/* ===== Header โปรไฟล์ ===== */
+.profile-header {
+  display: flex;
+  align-items: center;
+  background-color: #ff8fc1; /* ชมพูเข้มเหมือนภาพ */
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(255, 92, 141, 0.3);
+}
+
+/* วงกลม Avatar */
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: white;
+  color: #ff8fc1;
+  font-size: 3.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 40px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+/* ข้อมูลข้างขวา */
+.info {
+  flex: 1;
+}
+
+.info h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+}
+
+.field-label {
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.info input {
+  border: none;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* ปุ่ม Edit */
+button {
+  background-color: white;
+  color: #ff8fc1;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background-color: #ffe6f2;
+}
+
+/* ===== หัวข้อ My Projects ===== */
+h3 {
+  margin-top: 40px;
+  color: #ff5c8d;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* ===== การ์ดโปรเจกต์ (แนวนอน) ===== */
+.projects-section-horizontal {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 25px;
+  margin-top: 15px;
+}
+
+.projects-section-horizontal::-webkit-scrollbar {
+  height: 10px;
+}
+.projects-section-horizontal::-webkit-scrollbar-thumb {
+  background-color: #ff99cc;
+  border-radius: 10px;
+}
+
+/* ===== การ์ดแต่ละใบ ===== */
+.project-card {
+  background-color: white;
+  border-radius: 20px;
+  width: 280px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.25s ease;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(255, 92, 141, 0.3);
+}
+
+/* ส่วนบนของการ์ด */
+.project-image {
+  background-color: #ff8856; /* สีส้มเหมือนในรูป */
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ป้ายสถานะในมุมขวาบน */
+.status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* สีของสถานะ */
+.status-pending {
+  background-color: #ffcc00;
+  color: black;
+}
+.status-success {
+  background-color: #00bcd4;
+}
+.status-fail {
+  background-color: #e74c3c;
+}
+.status-draft {
+  background-color: #555;
+}
+
+/* ===== เนื้อหาในการ์ด ===== */
+.project-info {
+  padding: 15px;
+}
+
+.project-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ff5c8d;
+}
+
+.project-info p {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* ===== Tags ===== */
+.tags {
+  margin-top: 10px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #ffe0eb;
+  color: #ff5c8d;
+  border-radius: 10px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  margin-right: 6px;
+}
+
+/* ===== ปุ่มบ้านลอยมุมซ้ายล่าง ===== */
+.home-icon-placeholder {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background-color: #ffe6f2;
+  border: 2.5px solid #ff8fc1;
+  color: #ff8fc1;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 92, 141, 0.25);
+  transition: all 0.3s ease;
+}
+
+.home-icon-placeholder:hover {
+  background-color: #ff8fc1;
+  color: white;
+  transform: scale(1.05);
+}
+
+.home-icon-placeholder svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 20px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .avatar {
+    margin: 0 0 20px 0;
+  }
+
+  .project-card {
+    width: 240px;
+  }
+}

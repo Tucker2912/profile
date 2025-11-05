@@ -1,0 +1,142 @@
+/* src/pages/StatusPage.css - โค้ดที่แก้ไข Syntax Error และสมบูรณ์ */
+
+/* ====================================
+   1. GRID LAYOUT (จัดเรียงการ์ด 4)
+   ==================================== */
+.status-projects-grid {
+    display: grid;
+    /* บังคับสร้าง 4 คอลัมน์ */
+    grid-template-columns: repeat(4, 1fr); 
+    
+    gap: 30px; 
+    margin-top: 20px;
+    padding-bottom: 30px; 
+    width: 100%; 
+    margin-left: 0;
+    margin-right: 0; 
+    align-items: start;
+}
+
+/* ====================================
+   2. STATUS PROJECT CARD (โครงสร้างการ์ด)
+   ==================================== */
+.project-card { 
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(255, 160, 190, 0.2);
+    position: relative; 
+    height: 100%;
+}
+
+/* ส่วนรูปภาพสีส้ม */
+.project-card .project-image {
+    background-color: #FF7F50; /* สีส้ม */
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+}
+
+/* รายละเอียดการ์ด */
+.project-card .project-info {
+    padding: 15px;
+}
+
+.project-card .project-info h3 {
+    color: #ff5c8d;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.project-card .project-info p {
+    color: #444;
+    font-size: 0.95rem;
+    margin: 0 0 10px 0;
+}
+
+/* ====================================
+   3. STATUS BOX (กล่องสถานะ)
+   ==================================== */
+
+.status-box {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    z-index: 10;
+    text-transform: uppercase; 
+}
+
+/* สีตามสถานะ (คลาสที่ถูกส่งมาจาก JSX props) */
+.status-tag.pending {
+    background-color: #f7b500; /* สีเหลือง */
+    color: black;
+}
+.status-tag.success {
+    background-color: #17a2b8; /* สีฟ้า/น้ำเงิน */
+}
+.status-tag.fail {
+    background-color: #dc3545; /* สีแดง */
+}
+.status-tag.draft {
+  background-color: #bbbbbb; /* เทาอ่อน */
+  color: black;
+}
+
+/* ====================================
+   4. TAGS
+   ==================================== */
+.tag {
+    display: inline-block;
+    background-color: #ffe0eb;
+    color: #ff5c8d;
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    margin-top: 5px;
+} 
+
+/* ====================================
+   5. HOME ICON (รูปบ้าน)
+   ==================================== */
+
+.home-icon-placeholder {
+    display: flex;
+    justify-content: left;
+    margin-top: 35px;
+}
+
+/* สีพื้นหลังวงกลมของไอคอนบ้าน */
+.home-icon-placeholder svg {
+    width: 30px;
+    height: 30px;
+    background-color: white; 
+    padding: 12px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(255, 160, 180, 0.4);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.home-icon-placeholder svg:hover {
+    background-color: #ff9eb5;
+    transform: scale(1.05);
+}
+
+
+/* 🚨 6. Media Query (ไม่เปลี่ยนแปลง) */
+@media (max-width: 750px) {
+    .status-projects-grid {
+        grid-template-columns: 1fr;
+        width: 95%;
+    }
+}

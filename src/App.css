@@ -1,0 +1,56 @@
+/* src/App.css */
+
+/* 1. Import Poppins Font (สำหรับหัวข้อใหญ่) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* 2. กำหนดตัวแปรสี (Color Variables) ตามที่กำหนด */
+:root {
+    /* User-Defined Colors */
+    --user-yellow: #f7b500;
+    --user-blue: #5b8db8;
+    --user-orange: #ff6b2b;
+    --user-pink: #ffc1cc;
+    --user-green: #009a65;
+    
+    /* Mapped Design Colors */
+    --color-background: var(--user-pink); /* สีพื้นหลัง */
+    --color-header-bar: #ff99cc; /* สี Header Bar (ใช้สีชมพูเข้มเดิมเพื่อคอนทราสต์) */
+    --color-card-top: var(--user-orange); /* สีส้มบน Card */
+
+    /* Status Colors */
+    --status-pending-color: var(--user-yellow);
+    --status-success-color: var(--user-blue);
+    --status-draft-color: var(--user-green);
+    --status-fail-color: #dc3545; /* ใช้สีแดงมาตรฐานสำหรับ Fail เพื่อความชัดเจน */
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* Font ปกติ: sans-serif */
+body {
+  margin: 0;
+  font-family: sans-serif; 
+  background-color: var(--color-background); /* ใช้สีชมพูใหม่ */
+}
+
+/* Font หัวข้อใหญ่/คอนเทนเนอร์หลัก: Poppins */
+.App {
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.profile-container {
+    background-color: white; 
+    max-width: 1000px;
+    margin: 20px auto; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    padding: 20px; 
+}

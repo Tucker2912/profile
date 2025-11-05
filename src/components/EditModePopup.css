@@ -1,0 +1,108 @@
+/* src/components/EditModePopup.css */
+
+/* ====================================
+   1. POPUP CONTAINER (พื้นหลังทับจอ)
+   ==================================== */
+.popup-container {
+    /* 🌟 ให้ Pop-up ลอยอยู่เหนือหน้าจอ 🌟 */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* พื้นหลังทึบแสง */
+    background-color: rgba(0, 0, 0, 0.6); 
+    
+    /* จัด Box ให้อยู่กึ่งกลางหน้าจอ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* ให้ Pop-up อยู่บนสุด */
+}
+
+/* ====================================
+   2. POPUP BOX (กล่องฟอร์มสีขาว)
+   ==================================== */
+.popup-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(255, 100, 150, 0.4);
+    width: 90%;
+    max-width: 600px; /* จำกัดความกว้างไม่ให้ใหญ่เกินไป */
+    max-height: 90vh;
+    overflow-y: auto; 
+}
+
+/* ====================================
+   3. FORM FIELDS (จัดรูปแบบ Input)
+   ==================================== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box; /* สำคัญ: เพื่อให้ padding ไม่ขยายความกว้าง */
+    font-size: 0.95rem;
+    margin-top: 5px;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #ff99cc; /* สีชมพูเมื่อโฟกัส */
+    outline: none;
+}
+
+/* ====================================
+   4. BUTTONS
+   ==================================== */
+.button-row {
+    display: flex;
+    justify-content: flex-end; /* จัดปุ่มไปทางขวา */
+    gap: 15px;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.save-button, .cancel-button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.save-button {
+    background-color: #ff99cc; /* สีชมพู */
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #ff6699;
+}
+
+.cancel-button {
+    background-color: #ddd;
+    color: #555;
+}
+
+.cancel-button:hover {
+    background-color: #ccc;
+}
