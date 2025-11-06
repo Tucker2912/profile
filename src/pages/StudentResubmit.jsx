@@ -57,9 +57,9 @@ export default function StudentResubmit() {
         console.warn("⚠️ โหลดข้อมูลจริงไม่ได้ ใช้ mock แทน:", err.message);
         const mock = {
           title: "Mock Portfolio Title",
-          university: "Chulalongkorn University",
-          year: "2024",
-          category: "Design",
+          university: ["Chulalongkorn University"],
+          year: ["2024"],
+          category: ["Design"],
           desc: "This is mock portfolio content for testing.",
           files: [{ name: "mock_portfolio.pdf" }],
         };
