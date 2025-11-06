@@ -1,18 +1,23 @@
+// src/pages/WorkStatusPage.jsx
+
 import React, { useState } from 'react';
 import ProfileHeader from '../components/ProfileHeader';
 import ProjectCard from '../components/ProjectCard';
 import EditModePopup from '../components/EditModePopup';
 import './StatusPage.css';
 
-function WorkStatusPage() {
+// 🚨 รับ props 'showControls' เข้ามาจาก App.jsx
+function WorkStatusPage({ showControls }) { 
     const [isEditing, setIsEditing] = useState(false);
 
-    // ข้อมูลทั้งหมดของโปรเจ็กต์ (ปกติจะมาจาก API)
+    // ข้อมูลทั้งหมดของโปรเจ็กต์
     const projects = [
-        { title: "Project A", description: "AI system for KMUTT.", tags: ["AI", "2023"], status: "pending" },
-        { title: "Project B", description: "Web dashboard for health data.", tags: ["React", "2024"], status: "success" },
-        { title: "Project C", description: "Hospital record system.", tags: ["Database", "Node.js"], status: "fail" },
-        { title: "Project D", description: "Monitoring system for IoT devices.", tags: ["IoT", "Cloud"], status: "draft" }
+    { id: "proj_a_001", title: "Project A ", description: "AI system for KMUTT.", tags: ["AI", "2023"], status: "Pending" },
+    { id: "proj_b_002", title: "Project B ", description: "Web dashboard for health data.", tags: ["React", "2024"], status: "Approved" },
+    { id: "proj_c_003", title: "Project C ", description: "Hospital record system.", tags: ["Database", "Node.js"], status: "Failed" },
+    { id: "proj_d_004", title: "Project D ", description: "Monitoring system for IoT devices.", tags: ["IoT", "Cloud"], status: "Draft" },
+    { id: "proj_e_005", title: "Project E ", description: "Project Management Tool.", tags: ["Angular", "Web"], status: "In Process" },
+    { id: "proj_f_006", title: "Project F ", description: "Financial tracking app.", tags: ["Node", "Web"], status: "Pending", editMode: false }, 
     ];
 
     const [profileData, setProfileData] = useState({
@@ -23,34 +28,42 @@ function WorkStatusPage() {
 
     const handleInlineSaveAndClose = () => {
         console.log("Saving profile data from inline mode and closing edit mode.");
+        // Logic การ Save ข้อมูลจริงจะอยู่ที่นี่
         setIsEditing(false);
     };
 
     // 🧠 ฟังก์ชันกรองโปรเจ็กต์
     const filteredProjects = isEditing
-        ? projects.filter(p => p.status === "draft" || p.status === "fail")
+        ? projects.filter(p => p.status === "Draft" || p.status === "Failed")
         : projects;
 
     return (
         <div className="profile-container">
-            <ProfileHeader
-                name={profileData.name}
-                university={profileData.university}
-                contact={profileData.contact}
-                showEdit={isEditing}
-                onClickEdit={() => setIsEditing(true)}
-                onClickSave={handleInlineSaveAndClose}
-            />
+            {/* 🚨 ห่อ ProfileHeader ด้วย div เพื่อจัดกึ่งกลาง */}
+            <div className="profile-header-wrapper">
+                <ProfileHeader
+                    name={profileData.name}
+                    university={profileData.university}
+                    contact={profileData.contact}
+                    showEdit={isEditing}
+                    onClickEdit={() => setIsEditing(true)}
+                    onClickSave={handleInlineSaveAndClose}
+                    // 🚨 ส่ง props showControls ไปยัง ProfileHeader
+                    showControls={showControls} 
+                />
+            </div>
 
             <main className="status-projects-grid">
                 {filteredProjects.map((p, i) => (
                     <ProjectCard
                         key={i}
+                        id={p.id}
                         title={p.title}
                         description={p.description}
                         tags={p.tags}
                         status={p.status}
-                        editMode={isEditing}
+                        // 🚨 เงื่อนไขการแสดงปุ่มปากกา: ต้องเป็น (Draft หรือ Failed) AND (isEditing เป็น true)
+                        editMode={(p.status === "Draft" || p.status === "Failed") && isEditing}
                     />
                 ))}
             </main>

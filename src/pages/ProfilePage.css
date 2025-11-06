@@ -143,18 +143,22 @@ h3 {
 }
 
 /* สีของสถานะ */
-.status-pending {
-  background-color: #ffcc00;
+.status-tag.status-in-process {
+  background-color: #17a2b8;
+}
+.status-tag.status-failed {
+  background-color: #dc3545;
+}
+.status-tag.status-pending {
+  background-color: #f7b500;
   color: black;
 }
-.status-success {
-  background-color: #00bcd4;
+.status-tag.status-approved {
+  background-color: green;
 }
-.status-fail {
-  background-color: #e74c3c;
-}
-.status-draft {
-  background-color: #555;
+.status-tag.status-draft {
+  background-color: #bbbbbb;
+  color: black;
 }
 
 /* ===== เนื้อหาในการ์ด ===== */
@@ -217,24 +221,4 @@ h3 {
 .home-icon-placeholder svg {
   width: 28px;
   height: 28px;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .profile-container {
-    padding: 20px;
-  }
-
-  .profile-header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .avatar {
-    margin: 0 0 20px 0;
-  }
-
-  .project-card {
-    width: 240px;
-  }
 }

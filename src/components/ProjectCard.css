@@ -1,10 +1,12 @@
+/* src/components/ProjectCard.css - โค้ดฉบับสมบูรณ์ */
+
 /* --- 1. CARD CONTAINER (โครงสร้างการ์ดหลัก) --- */
 .project-card {
   background-color: white;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(255, 160, 190, 0.4);
-  position: relative; /* สำหรับ status-tag และปุ่ม edit */
+  position: relative; 
   height: 100%;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -14,65 +16,35 @@
   box-shadow: 0 6px 16px rgba(255, 160, 190, 0.6);
 }
 
-/* --- 2. PROJECT IMAGE PLACEHOLDER (ส่วนสีส้ม) --- */
-.project-image-placeholder {
+/* --- 2. PROJECT IMAGE (ส่วนสีส้ม) --- */
+.project-image {
   background-color: #ff7f50;
   height: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* สำคัญ: เป็น parent ให้ปุ่ม edit */
 }
 
-/* --- 3. STATUS TAG (กล่องสถานะ) --- */
-.status-tag {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 4px 8px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 0.75rem;
-  color: white;
-  z-index: 10;
-  text-transform: capitalize;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* 🎨 สีตามสถานะ */
-.status-tag.status-success {
-  background-color: #17a2b8;
-}
-.status-tag.status-fail {
-  background-color: #dc3545;
-}
-.status-tag.status-pending {
-  background-color: #f7b500;
-  color: black;
-}
-.status-tag.status-draft {
-  background-color: #bbbbbb;
-  color: black;
-}
-
-/* --- 4. PROJECT DETAILS (ข้อมูลข้อความ) --- */
-.project-details {
+/* --- 3. PROJECT DETAILS (ข้อมูลข้อความ) --- */
+.project-info {
   padding: 15px;
 }
 
-.title-text {
+.project-info h3 {
   color: #ff5c8d;
   font-size: 1.1rem;
   font-weight: bold;
   margin: 0 0 5px 0;
 }
 
-.description-text {
+.project-info p {
   color: #444;
   font-size: 0.95rem;
   margin: 0 0 10px 0;
 }
 
-/* --- 5. TAGS --- */
+/* --- 4. TAGS --- */
 .tags-row {
   margin-top: 10px;
   display: flex;
@@ -88,59 +60,53 @@
   margin-right: 8px;
   margin-bottom: 5px;
 }
-.tag.tag-yellow {
-  background-color: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeeba;
-}
 
-/* --- 6. ปุ่มแก้ไข / ลบ (Edit Mode) --- */
+/* --- 5. ปุ่มแก้ไข / ลบ (Edit Mode) --- */
 .edit-buttons {
+  /* 💡 ตำแหน่งชิดซ้ายบน */
   position: absolute;
   top: 10px;
-  left: 4px;
+  left: 10px;
   display: flex;
-  gap: 10px;
+  gap: 5px; /* ระยะห่างระหว่างไอคอน */
   z-index: 20;
-  opacity: 0;
-  animation: fadeIn 0.4s ease-in-out forwards;
 }
 
-.edit-buttons button {
-  background: none;
-  border: none;
-  font-size: 1.8rem;
+.edit-buttons button,
+.edit-buttons a {
+  /* 💡 ลดขนาดไอคอนและปรับเป็นวงกลม */
+  width: 30px; 
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* สไตล์พื้นหลังและเส้นขอบ */
+  background-color: rgba(255, 255, 255, 0.9); /* พื้นหลังขาวขุ่น */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  
   cursor: pointer;
-  transition: transform 0.2s, filter 0.2s;
-  line-height: 1;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  line-height: 1; 
+  font-size: 1rem; /* ขนาดสัญลักษณ์ */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* 🖊 ปุ่มแก้ไข */
 .edit-btn {
-  color: black;
-  text-shadow: 0 0 8px rgba(255, 92, 141, 0.6);
+  color: Black; /* สีดำ */
 }
 
 /* ❌ ปุ่มลบ */
 .delete-btn {
-  color: black;
-  text-shadow: 0 0 8px rgba(255, 59, 48, 0.6);
+  color: #dc3545; /* สีแดง */
 }
 
-/* เอฟเฟกต์ hover ให้เด่นขึ้น */
-.edit-buttons button:hover {
-  transform: scale(1.25);
-  filter: brightness(1.3);
-}
-
-/* --- 7. เอฟเฟกต์ Fade-in สำหรับ Edit Mode --- */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* เอฟเฟกต์ hover */
+.edit-buttons button:hover,
+.edit-buttons a:hover {
+  transform: scale(1.15);
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
