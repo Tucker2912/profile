@@ -58,7 +58,7 @@ function ProfilePage({ showControls }) {
 
             {/* ส่วนที่ 3: ปุ่ม Home (อยู่ล่างสุด) */}
             <div className="home-icon-placeholder">
-                <svg viewBox="0 0 24 24" fill="#ff99cc" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 24 24" fill="green" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                 </svg>
             </div>

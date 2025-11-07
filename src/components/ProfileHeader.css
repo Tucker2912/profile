@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     padding: 25px 40px; 
-    background-color: #ff99cc; 
+    background-color: purple; 
     border-radius: 15px;
     gap: 40px; 
     box-shadow: 0 6px 15px rgba(255, 153, 204, 0.4);

@@ -1,0 +1,222 @@
+/* CommentPage.css (ฉบับสมบูรณ์พร้อม Comment Form) */
+
+/* --- CONTAINER & LAYOUT --- */
+.comment-page-container {
+    padding: 20px;
+    background-color: #fce4ec; /* สีชมพูอ่อนเป็นพื้นหลัง */
+    min-height: 100vh;
+}
+
+.comment-page-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* แบ่ง 2 คอลัมน์ */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 🚨 BACK BUTTON (เพิ่ม Cursor) */
+.back-button {
+    cursor: pointer; 
+    font-size: 1rem;
+    color: #ff5c8d; /* สีชมพู */
+    margin-bottom: 20px;
+}
+
+/* --- LEFT SECTION: PROJECT DISPLAY --- */
+.project-display-section {
+    padding: 20px;
+    background-color: white; /* พื้นหลังสีขาวสำหรับส่วนซ้าย */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 🚨 IMAGE VIEWER (ตำแหน่งสำหรับปุ่มเลื่อน) */
+.image-viewer {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative; /* สำคัญ */
+}
+
+/* 🚨 สไตล์สำหรับรูปภาพหลัก */
+.project-main-image {
+    width: 100%;
+    height: 400px; 
+    object-fit: cover; 
+    border-radius: 4px;
+}
+
+.project-details {
+    padding-top: 10px;
+}
+
+/* 🚨 สไตล์สำหรับปุ่มเลื่อนรูปภาพ */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer; 
+    z-index: 10;
+    font-size: 1.5rem;
+    line-height: 1;
+    border-radius: 5px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.nav-button:hover:not(:disabled) {
+    opacity: 1;
+}
+.nav-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+/* 🚨 สไตล์สำหรับ Pagination Dots */
+.image-pagination {
+    position: absolute; 
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.image-pagination .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    cursor: pointer; 
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s;
+}
+
+.image-pagination .dot.active {
+    background-color: #ff5c8d; /* สีชมพูเมื่อ Active */
+    border-color: #fff;
+}
+
+
+/* --- RIGHT SECTION: COMMENTS --- */
+.comments-section {
+    background-color: #ff8c00; /* สีส้มเข้ม (Orange) ตามภาพตัวอย่าง */
+    padding: 20px;
+    border-radius: 8px;
+    display: flex; 
+    flex-direction: column;
+}
+
+/* 🚨 NEW: Comment Form Styling */
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* แยก Form ออกจาก Comment List */
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9); /* พื้นหลัง Form */
+    border-radius: 8px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.comment-form button {
+    background-color: #ff5c8d; /* สีชมพู */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.comment-form button:hover:not(:disabled) {
+    background-color: #ff8c00; /* สีส้มเมื่อ hover */
+}
+
+.comment-form button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+/* 🚨 แก้ไข: ทำให้ Comment Block เป็นสีที่ตัดกับพื้นหลังสีส้มได้ดี */
+.comment-block {
+    background-color: #ff9966; /* สีส้มอ่อน หรือ rgba(255, 255, 255, 0.9) */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.author-initial {
+    background-color: #ff5c8d; 
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ff8c00; 
+}
+
+.author-role {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.comment-text {
+    font-style: italic;
+    color: #333;
+    margin: 0;
+    padding-left: 50px; 
+}
+
+/* 🚨 แก้ไข: ทำให้ข้อความ placeholder <comments> ชัดเจนขึ้น */
+.comments-placeholder {
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.2rem;
+}

@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import ProfileHeader from '../components/ProfileHeader';
 import ProjectCard from '../components/ProjectCard';
-import EditModePopup from '../components/EditModePopup';
 import './StatusPage.css';
 
 // 🚨 รับ props 'showControls' เข้ามาจาก App.jsx
@@ -69,7 +68,7 @@ function WorkStatusPage({ showControls }) {
             </main>
 
             <div className="home-icon-placeholder">
-                <svg viewBox="0 0 24 24" fill="#ff99cc" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 24 24" fill="#ff9999ff" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                 </svg>
             </div>

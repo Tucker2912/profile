@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ProfilePage from './pages/ProfilePage';
 import WorkStatusPage from './pages/WorkStatusPage';
+import CommentPage from './pages/CommentPage';
 
 import EditPage from './pages/EditPage.jsx'; 
 import StudentResubmit from './pages/StudentResubmit.jsx'; 
@@ -27,6 +28,7 @@ function App() {
                     path="/status" 
                     element={<WorkStatusPage showControls={true} />} 
                 />
+                <Route path="/project/:projectId/comments" element={<CommentPage />} />
 
                 {/* Routes ของเพื่อน (Edit/Resubmit) */}
                 <Route path="/edit/:projectId" element={<EditPage />} />

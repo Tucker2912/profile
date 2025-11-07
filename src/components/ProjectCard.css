@@ -1,112 +1,202 @@
-/* src/components/ProjectCard.css - โค้ดฉบับสมบูรณ์ */
-
 /* --- 1. CARD CONTAINER (โครงสร้างการ์ดหลัก) --- */
 .project-card {
-  background-color: white;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(255, 160, 190, 0.4);
-  position: relative; 
-  height: 100%;
-  transition: transform 0.2s, box-shadow 0.2s;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(255, 160, 190, 0.4);
+    position: relative; 
+    height: 100%;
+    /* ลบ transition ออกจากตรงนี้ เพื่อให้ Link Wrapper จัดการ */
 }
 
-.project-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(255, 160, 190, 0.6);
+/* NEW: สไตล์หลักของการ์ดเมื่อเป็น Link Wrapper */
+.card-link-wrapper {
+    text-decoration: none; 
+    color: inherit; 
+    display: block; 
+    height: 100%; /* สำคัญ: ให้ Link ครอบคลุมความสูง 100% */
+    transition: transform 0.2s, box-shadow 0.2s; /* เพิ่ม transition ตรงนี้ */
 }
 
+/* NEW: ย้าย hover effect ไปที่ Link Wrapper */
+.card-link-wrapper:hover .project-card {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(255, 160, 190, 0.6);
+}
 /* --- 2. PROJECT IMAGE (ส่วนสีส้ม) --- */
 .project-image {
-  background-color: #ff7f50;
-  height: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; /* สำคัญ: เป็น parent ให้ปุ่ม edit */
+    background-color: #ff7f50;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
 }
 
+/* NEW: STATUS TAG (ป้ายสถานะ) */
+.status-tag {
+    position: absolute;
+    top: 0;
+    right: 0; /* ย้ายไปมุมขวาบน เพื่อไม่ชนปุ่ม Edit */
+    padding: 4px 8px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 10;
+    border-radius: 0 15px 0 15px; 
+}
+/* สีกำหนดตามสถานะ */
+.status-tag.approved { background-color: #28a745; } /* เขียว */
+.status-tag.draft { background-color: #ff9966; } /* ส้ม */
+.status-tag.failed { background-color: #dc3545; } /* แดง */
+.status-tag.pending, .status-tag.in-process { background-color: #ffc107; } /* เหลือง */
 /* --- 3. PROJECT DETAILS (ข้อมูลข้อความ) --- */
 .project-info {
-  padding: 15px;
+    padding: 15px;
 }
 
 .project-info h3 {
-  color: #ff5c8d;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin: 0 0 5px 0;
+    color: #ff5c8d;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 0 5px 0;
 }
 
 .project-info p {
-  color: #444;
-  font-size: 0.95rem;
-  margin: 0 0 10px 0;
+    color: #444;
+    font-size: 0.95rem;
+    margin: 0 0 10px 0;
 }
 
 /* --- 4. TAGS --- */
 .tags-row {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
 .tag {
-  display: inline-block;
-  background-color: #ffe0eb;
-  color: #ff5c8d;
-  border-radius: 5px;
-  padding: 3px 8px;
-  font-size: 0.75rem;
-  margin-right: 8px;
-  margin-bottom: 5px;
+    display: inline-block;
+    background-color: #ffe0eb;
+    color: #ff5c8d;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    margin-right: 8px;
+    margin-bottom: 5px;
 }
-
 /* --- 5. ปุ่มแก้ไข / ลบ (Edit Mode) --- */
 .edit-buttons {
-  /* 💡 ตำแหน่งชิดซ้ายบน */
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: flex;
-  gap: 5px; /* ระยะห่างระหว่างไอคอน */
-  z-index: 20;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 5px; 
+    z-index: 20;
 }
 
 .edit-buttons button,
 .edit-buttons a {
-  /* 💡 ลดขนาดไอคอนและปรับเป็นวงกลม */
-  width: 30px; 
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  /* สไตล์พื้นหลังและเส้นขอบ */
-  background-color: rgba(255, 255, 255, 0.9); /* พื้นหลังขาวขุ่น */
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-  line-height: 1; 
-  font-size: 1rem; /* ขนาดสัญลักษณ์ */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    width: 30px; 
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9); 
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    line-height: 1; 
+    font-size: 1rem; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* 🖊 ปุ่มแก้ไข */
 .edit-btn {
-  color: Black; /* สีดำ */
+    color: Black; 
 }
 
 /* ❌ ปุ่มลบ */
 .delete-btn {
-  color: #dc3545; /* สีแดง */
+    color: #dc3545; 
 }
 
 /* เอฟเฟกต์ hover */
 .edit-buttons button:hover,
 .edit-buttons a:hover {
-  transform: scale(1.15);
-  background-color: white;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    transform: scale(1.15);
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+/* --- 6. VISIBILITY TOGGLE (Public/Private Switch) --- */
+.visibility-control {
+    margin: 10px 0;
+    padding-top: 5px;
+    border-top: 1px solid #eee;
+}
+
+.switch-label {
+    position: relative;
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 0.9em;
+    cursor: pointer;
+    user-select: none; 
+}
+
+.switch-label input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* รูปร่างของ Switch (Slider) */
+.slider {
+    position: relative;
+    width: 40px; 
+    height: 20px; 
+    background-color: #ccc; 
+    transition: 0.4s;
+    border-radius: 34px;
+    margin: 0 10px; 
+}
+
+/* ปุ่มกลมด้านใน */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/* สถานะเมื่อเปิด (Public) */
+input:checked + .slider {
+    background-color: #ff5c8d; 
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px); 
+}
+
+/* จัดสีข้อความตามสถานะ */
+.private-text { 
+    color: #444; 
+    font-weight: bold;
+}
+input:checked ~ .private-text { 
+    font-weight: normal;
+    color: #888;
+}
+.public-text { 
+    color: #888; 
+}
+input:checked ~ .public-text { 
+    color: #ff5c8d; 
+    font-weight: bold;
 }

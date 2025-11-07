@@ -4,21 +4,39 @@ import React from "react";
 import "./ProjectCard.css";
 import { Link } from 'react-router-dom';
 
-const ProjectCard = ({ id, title, description, tags = [], status = "", editMode }) => { 
+const ProjectCard = ({ 
+    id, 
+    title, 
+    description, 
+    tags = [], 
+    status = "", 
+    editMode,
+    isPublic, 
+    onToggleVisibility 
+}) => { 
     
-    // โค้ดจัดการ Status (คงเดิม)
     const statusClass = status.toLowerCase().replace(' ', '-');
     const statusText = status.toUpperCase().replace('-', ' '); 
     
-    // 🚨 1. สร้าง Path แบบมีเงื่อนไขตามสถานะ
+    const isApproved = status.toLowerCase() === 'approved';
+
     const linkPath = status === "Draft" 
-                     ? `/edit/${id}`     // สถานะ DRAFT: ไปหน้า EditPage (Portfolio)
-                     : status === "Failed" 
-                     ? `/resubmit/${id}` // สถานะ FAILED: ไปหน้า StudentResubmit (Resubmit)
-                     : null;             // สถานะอื่นไม่มีลิงก์
+        ? `/edit/${id}` 
+        : status === "Failed" 
+        ? `/resubmit/${id}` 
+        : null; 
+        
+    const commentPath = `/project/${id}/comments`; 
+
+    const handleToggle = (e) => {
+        // ฟังก์ชันที่ส่งค่ากลับไปยัง Parent Component เพื่ออัปเดตสถานะ Public/Private ในฐานข้อมูล
+        if (onToggleVisibility) {
+            onToggleVisibility(id, e.target.checked);
+        }
+    };
     
-    
-    return (
+    // สร้าง Content ทั้งหมดของการ์ด (ใช้เป็น Container หลัก)
+    const cardContent = (
         <div className="project-card">
             
             <div className="project-image"> 
@@ -30,19 +48,19 @@ const ProjectCard = ({ id, title, description, tags = [], status = "", editMode 
                 {editMode && (
                     <div className="edit-buttons">
                         
-                        {/* 🚨 2. แสดง Link เมื่อ linkPath ถูกกำหนดแล้วเท่านั้น */}
+                        {/* ปุ่ม Edit */}
                         {linkPath ? (
-                            <Link to={linkPath} className="edit-btn">
+                            <Link to={linkPath} className="edit-btn" onClick={(e) => e.stopPropagation()}> 
                                 🖊
                             </Link>
                         ) : (
-                            // ถ้าไม่มี Path แต่ปุ่มควรแสดง ให้แสดงเป็นปุ่มธรรมดาแทน
-                            <button className="edit-btn">
+                            <button className="edit-btn" onClick={(e) => e.stopPropagation()}>
                                 🖊
                             </button>
                         )}
                         
-                        <button className="delete-btn">❌</button>
+                        {/* ปุ่ม Delete */}
+                        <button className="delete-btn" onClick={(e) => e.stopPropagation()}>❌</button>
                     </div>
                 )}
             </div>
@@ -50,6 +68,23 @@ const ProjectCard = ({ id, title, description, tags = [], status = "", editMode 
             <div className="project-info"> 
                 <h3>{title}</h3>
                 <p>{description}</p>
+                
+                {/* 🚨 Toggle Switch (แสดงเมื่อ Approved และอยู่ในโหมดแก้ไขเท่านั้น) */}
+                {isApproved && editMode && (
+                    <div className="visibility-control" onClick={(e) => e.stopPropagation()}> 
+                        <label className="switch-label">
+                            <span className="private-text">Private</span>
+                            <input
+                                type="checkbox"
+                                checked={isPublic}
+                                onChange={handleToggle}
+                            />
+                            <span className="slider round"></span>
+                            <span className="public-text">Public</span>
+                        </label>
+                    </div>
+                )}
+                
                 <div className="tags">
                     {tags.map((tag, i) => (
                         <span key={i} className="tag">{tag}</span>
@@ -58,6 +93,18 @@ const ProjectCard = ({ id, title, description, tags = [], status = "", editMode 
             </div>
         </div>
     );
+    
+    // 💡 คืนค่า: ถ้าเป็น Approved ให้ครอบด้วย Link ไปหน้า Comment
+    if (isApproved) {
+        return (
+            <Link to={commentPath} className="card-link-wrapper">
+                {cardContent}
+            </Link>
+        );
+    }
+
+    // 💡 ถ้าไม่ใช่ Approved ให้คืนค่า Content ธรรมดา
+    return cardContent;
 };
 
 export default ProjectCard;
