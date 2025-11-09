@@ -1,10 +1,10 @@
-// src/api/user.js
-
-import { getAuthHeader, BASE_URL } from './utils';
+// 🚨 [FIX] เพิ่ม import ภายใน (./) ที่ขาดหายไป
+import { getAuthHeader, BASE_URL } from './apiUtils.js';
 
 // GET /api/user - ดึงข้อมูลผู้ใช้ปัจจุบัน
 export async function getCurrentUser() {
     try {
+        // 🚨 ตอนนี้โค้ดรู้จัก 2 ตัวแปรนี้แล้ว
         const headers = getAuthHeader();
         const res = await fetch(`${BASE_URL}/api/user`, {
             headers,

@@ -210,7 +210,9 @@
     font-style: italic;
     color: #333;
     margin: 0;
-    padding-left: 50px; 
+    padding-left: 50px;
+    word-break: break-word; 
+    overflow-wrap: break-word; 
 }
 
 /* 🚨 แก้ไข: ทำให้ข้อความ placeholder <comments> ชัดเจนขึ้น */

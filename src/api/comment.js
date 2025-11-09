@@ -1,18 +1,18 @@
-// =======================================================
-// 🚨 API 2: คอมเมนต์
-// Endpoint: GET /api/projects/:projectId/comments
-// =======================================================
-router.get('/projects/:projectId/comments', (req, res) => {
-    const projectId = req.params.projectId;
+// 🚨 [FIX] นี่คือโค้ด Frontend สำหรับเรียก API
+import { BASE_URL } from './apiUtils.js';
 
-    // 🛑 1. DATABASE LOGIC: ส่วนนี้ต้องถูกแทนที่ด้วยการเชื่อมต่อ DB จริง
-    const projectData = mockDbData[projectId];
-    
-    if (!projectData || !projectData.comments) {
-        // หากไม่พบโปรเจกต์ หรือโปรเจกต์ไม่มีคอมเมนต์
-        return res.json([]); // ส่ง Array ว่างกลับไป
+// GET /api/projects/:projectId/comments
+export async function getComments(projectId) {
+    try {
+        const res = await fetch(`${BASE_URL}/api/projects/${projectId}/comments`);
+
+        if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.message || "Failed to fetch comments.");
+        }
+        return await res.json();
+    } catch (error) {
+        console.error("API Error: getComments", error);
+        throw error;
     }
-
-    // 🛑 2. SUCCESS RESPONSE: ส่ง Array ของคอมเมนต์กลับไป
-    res.json(projectData.comments);
-});
+}
